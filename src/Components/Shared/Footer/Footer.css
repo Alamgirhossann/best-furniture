@@ -1,0 +1,14 @@
+.footer-container{
+    background-image: url('../../../images/soafa/soafa\ \(9\).jpg');
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.footer-text-container{
+    background: black;
+    opacity: .9;
+}
+.contact-info{
+    line-height: 1px;
+}

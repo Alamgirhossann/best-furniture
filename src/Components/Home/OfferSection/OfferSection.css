@@ -1,0 +1,22 @@
+.section-first-img{
+    background-image: url('../../../images/soafa/soafa\ \(1\).jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.section-second-img{
+    background-image: url('../../../images/soafa/soafa\ \(7\).jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.text-bg{
+    background: black;
+    color: white;
+    opacity: 0.5;
+    height: 350px;
+}
+.text-decoration{
+    margin-left: 40px;
+    padding: 40px;
+}

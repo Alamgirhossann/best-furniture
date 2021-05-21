@@ -29,7 +29,7 @@ const ProductDetail = () => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-6">
-                        <img src={item.image} alt="" />
+                        <img style={{width:"100%"}} src={item.image} alt="" />
                     </div>
                     <div className="col-md-6">
                         <div className="mt-5">

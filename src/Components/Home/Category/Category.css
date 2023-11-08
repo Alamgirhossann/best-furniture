@@ -1,34 +1,40 @@
-.category-container{
-    background-image: url('../../../images/soafa/soafa\ \(9\).jpg');
-    height: auto;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    
-}
-.div-container{
-    background: black;
-    opacity: 0.9;
-    height: auto;
-    padding-bottom: 10px;
+.category-container {
+  /* background-image: url('../../../images/soafa/soafa\ \(9\).jpg');
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; */
+
 }
 
-.btn-hover-style{
-    margin: 0;
-    padding: 0;
-    background: none;
-    border: none;
-    border-radius: 0;
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  }
-.btn-hover-style:hover{
-  
-  border: 1px solid red;
+.div-container {
+  /* background: black; */
+  opacity: 0.9;
+  height: auto;
+  padding-bottom: 10px;
+}
+
+.btn-hover-style {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.btn-hover-style:hover {
+
   outline: white;
 }
-  
-  
- 
+
+.activeItem {
+  /* text-decoration: underline; */
+  font-weight: bold;
+  background: #a9d6e5;
+  padding: 5px 20px;
+  border-radius: 5px;
+}

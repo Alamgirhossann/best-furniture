@@ -1,22 +1,20 @@
-.section-first-image{
-    background-image: url('../../../images/soafa/soafa\ \(5\).jpg');
+.section-first-image {
+    background-image: url('../../../images/bed/bed\ \(10\).jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.section-second-image{
+
+
+.section-second-image {
     background-image: url('../../../images/soafa/soafa\ \(2\).jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
 }
-.text-bcg{
-    background: black;
-    color: white;
-    opacity: 0.5;
-    height: 350px;
-}
-.text-align{
+
+.text-align {
     margin-left: 40px;
     padding: 40px;
 }

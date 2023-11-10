@@ -22,7 +22,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="container my-5" id="contact">
+    <div className="container-fluid my-5" id="contact">
       <h1 className="text-center">Contact Us</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

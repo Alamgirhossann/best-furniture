@@ -1,6 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import Home from "./Components/Home/Home/Home";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import NotFound from "./Components/NotFound/NotFound";
@@ -14,6 +20,7 @@ import Footer from "./Components/Shared/Footer/Footer";
 export const ProductContext = createContext();
 
 function App() {
+  let history = useHistory();
   const [cartItem, setCartItem] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
 
@@ -26,7 +33,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("cartItem", JSON.stringify(cartItem));
-  });
+  }, [cartItem]);
 
   const addProduct = (product) => {
     const exsist = cartItem.find((item) => item.id === product.id);
@@ -39,6 +46,20 @@ function App() {
     } else {
       setCartItem([...cartItem, { ...product, qty: 1 }]);
     }
+  };
+
+  const buyProduct = (product) => {
+    const exsist = cartItem.find((item) => item.id === product.id);
+    if (exsist) {
+      setCartItem(
+        cartItem.map((x) =>
+          x.id === product.id ? { ...exsist, qty: exsist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItem([...cartItem, { ...product, qty: 1 }]);
+    }
+    history.push("/cart");
   };
 
   const removeProduct = (product) => {
@@ -69,7 +90,7 @@ function App() {
             <Home addProduct={addProduct}></Home>
           </Route>
           <Route path="/productDetail/:id">
-            <ProductDetail></ProductDetail>
+            <ProductDetail addProduct={addProduct}></ProductDetail>
           </Route>
           <PrivateRoute path="/shipping">
             <Shipping></Shipping>

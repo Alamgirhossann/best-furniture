@@ -16,11 +16,7 @@ const Shipping = () => {
   };
 
   return (
-    <div>
-      <div className="bg-danger text-white">
-        <HeaderWithLogo></HeaderWithLogo>
-        <Header></Header>
-      </div>
+    <div style={{ background: "rgb(248, 253, 253)" }}>
       <div className="container">
         <div className="row">
           <div className="col-md-6 mt-5 mb-5">
@@ -104,9 +100,6 @@ const Shipping = () => {
           </div>
         </div>
       </div>
-      <hr />
-      <Subscribe></Subscribe>
-      <Footer></Footer>
     </div>
   );
 };

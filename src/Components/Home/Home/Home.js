@@ -10,17 +10,19 @@ import OfferSection from "../OfferSection/OfferSection";
 import Subscribe from "../Subscribe/Subscribe";
 import TopBanner from "../TopBanner/TopBanner";
 import ContactForm from "../ContactUs/ContactUs";
-
+import "../../../App.css";
 const Home = ({ addProduct }) => {
   return (
     <div style={{ background: "rgb(248, 253, 253)" }}>
       <TopBanner></TopBanner>
-      <Category addProduct={addProduct}></Category>
-      <FurnitureSection></FurnitureSection>
-      <Blog></Blog>
-      <ContactForm />
-      <hr />
-      <Subscribe></Subscribe>
+      <div className="home-margin">
+        <Category addProduct={addProduct}></Category>
+        <FurnitureSection></FurnitureSection>
+        <Blog></Blog>
+        <ContactForm />
+        <hr />
+        <Subscribe></Subscribe>
+      </div>
     </div>
   );
 };

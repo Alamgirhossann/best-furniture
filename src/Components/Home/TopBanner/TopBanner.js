@@ -34,7 +34,7 @@ const TopBanner = () => {
             className="d-block"
             alt="..."
           />
-          <div className="carousel-caption d-none d-md-block text-dark">
+          <div className="carousel-caption text-dark">
             <h5>Furniture Collections</h5>
             <p>Up to 20% Cashback </p>
             <small>amazing deals. Greate 500+ brands. Real saving.</small>
@@ -52,7 +52,7 @@ const TopBanner = () => {
             className="d-block"
             alt="..."
           />
-          <div className="carousel-caption d-none d-md-block text-dark">
+          <div className="carousel-caption text-dark">
             <h5>Furniture Collections</h5>
             <p>Up to 20% Cashback </p>
             <small>amazing deals. Greate 500+ brands. Real saving.</small>

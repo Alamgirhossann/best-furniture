@@ -14,3 +14,7 @@
 .contact-info {
     line-height: 1px;
 }
+
+.p-ele-margin p {
+    margin-bottom: .5rem;
+}

@@ -31,14 +31,14 @@ const Subscribe = () => {
     e.preventDefault();
   };
   return (
-    <div className="container mt-4 mb-4">
-      <div className="row">
-        <div className="col-md-6 fs-3">
-          <p className="fw-bold text-black">
+    <div className="container mt-4 pb-4">
+      <div className="">
+        <div className="text-center">
+          <p className="fw-bold text-dark fs-md-5 fs-3">
             <FontAwesomeIcon icon={faVolumeUp} /> Subscribe For Get Newsletter
           </p>
         </div>
-        <div className="col-md-6">
+        <div className="">
           <form className="d-flex" onSubmit={handleSubscribe}>
             <input
               onBlur={handleBlur}

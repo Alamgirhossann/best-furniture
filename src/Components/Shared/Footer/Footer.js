@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="footer-text-container">
         <div className="container-fluid text-white pt-5 pb-2">
           <div className="row">
-            <div className="col-md-5 text-dark">
+            <div className="col-md-3 text-dark">
               <h5 className="mb-5">Contact Information</h5>
               <p className="contact-info">Call us 24/7 Free</p>
               <h1>0123 4567 890</h1>
@@ -21,23 +21,23 @@ const Footer = () => {
                 <img className="me-5 text-white" src={twitter} alt="" />
               </div>
             </div>
-            <div className="col-md-2 text-dark">
-              <h5 className="my-4">Imformation</h5>
+            <div className="col-md-3 text-dark p-ele-margin">
+              <h5 className="mt-4 mb-4 mt-md-0">Imformation</h5>
               <p>About</p>
               <p>Delivery Information</p>
               <p>Privacy Policy</p>
               <p>Terms & Conditions</p>
             </div>
-            <div className="col-md-2 text-dark">
-              <h5 className="mb-4">Customer Service</h5>
+            <div className="col-md-3 text-dark p-ele-margin">
+              <h5 className="mt-4 mb-4 mt-md-0">Customer Service</h5>
               <p>Specials</p>
               <p>Return</p>
               <p>Site Map</p>
               <p>Brands</p>
               <p>Gift Certificates</p>
             </div>
-            <div className="col-md-2 text-dark">
-              <h5 className="mb-4">My Account</h5>
+            <div className="col-md-3 text-dark p-ele-margin">
+              <h5 className="mt-4 mb-4 mt-md-0">My Account</h5>
               <p>My Account</p>
               <p>Order History</p>
               <p>Wish List</p>

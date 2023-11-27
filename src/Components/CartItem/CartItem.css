@@ -1,0 +1,95 @@
+.custom-scrollbar {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    height: 50vh;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 0;
+    /* Set the width of the scrollbar to zero */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Set the background color of the thumb to transparent */
+}
+
+.custom-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px;
+}
+
+.custom-row {
+    display: flex;
+}
+
+.image-size {
+    height: 70px;
+    width: 70px;
+    border-radius: 10px;
+}
+
+.text-size {
+    font-size: 14px;
+
+}
+
+.custom-btn {
+    cursor: pointer;
+    border: none;
+}
+
+.shopping-cart {
+    width: 50%;
+    height: 100vh;
+    /* Set the cart height to full viewport height */
+    background-color: rgb(248, 253, 253);
+    border: 1px solid #dee2e6;
+    position: fixed;
+    top: 0;
+    right: 0;
+    overflow-y: auto;
+    z-index: 200;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 10px;
+    background-color: #a9d6e5;
+    /* color: white; */
+}
+
+.btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.cart-body {
+    padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .custom-row {
+        display: inline-block;
+    }
+
+    .image-size {
+        height: 100px;
+        width: 90px;
+    }
+
+    .shopping-cart {
+        width: 100%;
+    }
+
+    .text-size {
+        font-size: 12px;
+    }
+}

@@ -1,6 +1,5 @@
-import { faVolumeUp } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import { url } from "../../../utils/URL";
 
 const Subscribe = () => {
   const [subscriber, setSubscriber] = useState(null);
@@ -13,7 +12,7 @@ const Subscribe = () => {
   const handleSubscribe = (e) => {
     // const emailRegex =new RegExp (/^\S+@\S+\.\S+$/)
     if (subscriber) {
-      fetch("http://localhost:4000/subscribe", {
+      fetch(`${url}/subscribe`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(subscriber),
@@ -35,7 +34,7 @@ const Subscribe = () => {
       <div className="">
         <div className="text-center">
           <p className="fw-bold text-dark fs-md-5 fs-3">
-            <FontAwesomeIcon icon={faVolumeUp} /> Subscribe For Get Newsletter
+            Subscribe For Get Newsletter
           </p>
         </div>
         <div className="">

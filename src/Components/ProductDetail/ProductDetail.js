@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { ProductContext } from "../../App";
+import CartItem from "../CartItem/CartItem";
+import { url } from "../../utils/URL";
 
-const ProductDetail = ({ addProduct }) => {
+const ProductDetail = ({ addProduct, removeProduct }) => {
   const { id } = useParams();
   const [item, setItem] = useState({});
-  const { cart } = useContext(ProductContext);
+  const { cart, showCart } = useContext(ProductContext);
   const [cartItem, setCartItem] = cart;
-
-  let history = useHistory();
+  const [showCartItem, setShowCartItem] = showCart;
 
   useEffect(() => {
-    fetch(`http://localhost:4000/products/${id}`, {
+    fetch(`${url}/products/${id}`, {
       method: "GET",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(),
@@ -28,10 +29,10 @@ const ProductDetail = ({ addProduct }) => {
           x.id === product.id ? { ...exsist, qty: exsist.qty + 1 } : x
         )
       );
-      history.push("/cart");
+      setShowCartItem(true);
     } else {
       setCartItem([...cartItem, { ...product, qty: 1 }]);
-      history.push("/cart");
+      setShowCartItem(true);
     }
   };
 
@@ -46,7 +47,7 @@ const ProductDetail = ({ addProduct }) => {
             <div className="mt-5">
               <h2>{item.description}</h2>
               <p>Product Code: {item.id}</p>
-              <h3>Price:{item.price}</h3>
+              <h3>Price:${item.price}</h3>
               <div className="">
                 <button
                   onClick={() => addProduct(item)}
@@ -72,6 +73,9 @@ const ProductDetail = ({ addProduct }) => {
           </div>
         </div>
       </div>
+      {showCartItem && (
+        <CartItem addProduct={addProduct} removeProduct={removeProduct} />
+      )}
     </div>
   );
 };

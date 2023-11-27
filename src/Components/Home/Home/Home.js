@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Blog from "../Blog/Blog";
 import BrandIcon from "../BrandIcon/BrandIcon";
 import Category from "../Category/Category";
@@ -11,7 +11,11 @@ import Subscribe from "../Subscribe/Subscribe";
 import TopBanner from "../TopBanner/TopBanner";
 import ContactForm from "../ContactUs/ContactUs";
 import "../../../App.css";
+import CartItem from "../../CartItem/CartItem";
+import { ProductContext } from "../../../App";
 const Home = ({ addProduct }) => {
+  const { showCart } = useContext(ProductContext);
+  const [showCartItem] = showCart;
   return (
     <div style={{ background: "rgb(248, 253, 253)" }}>
       <TopBanner></TopBanner>

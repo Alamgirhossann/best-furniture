@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { ProductContext } from "../../App";
 import master from "../../images/icon/master.png";
 import visa from "../../images/icon/visa.png";
+import { url } from "../../utils/URL";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -24,7 +25,7 @@ const PaymentForm = () => {
       orderTime: new Date(),
     };
 
-    fetch("http://localhost:4000/paymentInfo", {
+    fetch(`${url}/paymentInfo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

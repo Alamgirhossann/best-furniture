@@ -1,20 +1,34 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./HeaderWithLogo.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { ProductContext } from "../../../App";
+import CartItem from "../../CartItem/CartItem";
+import { jwtDecode } from "jwt-decode";
+import { firebaseConfig } from "../../Login/firebaseConfig";
 
-const HeaderWithLogo = () => {
-  const { cart } = useContext(ProductContext);
+const HeaderWithLogo = ({ addProduct, removeProduct }) => {
+  const { cart, showCart } = useContext(ProductContext);
   const [cartItem] = cart;
+  const [showCartItem, setShowCartItem] = showCart;
+  const [token, setToken] = useState(false);
+
+  const openCart = () => {
+    setShowCartItem(true);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
   };
+  useEffect(() => {
+    const decodedToken = localStorage.getItem("token");
+    setToken(decodedToken);
+  }, [token]);
 
+  const logout = () => {
+    // firebaseConfig.auth().signOut();
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -37,7 +51,7 @@ const HeaderWithLogo = () => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
-                  className="nav-link active me-4"
+                  className="nav-link active me-3"
                   aria-current="page"
                   to="/"
                 >
@@ -45,60 +59,72 @@ const HeaderWithLogo = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link me-4 text-dark" href="/#product">
+                <a className="nav-link me-3 text-dark" href="/#product">
                   Products
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link me-4 text-dark" href="/#blog">
+                <a className="nav-link me-3 text-dark" href="/#blog">
                   Blogs
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link me-4 text-dark" href="/#contact">
+                <a className="nav-link me-3 text-dark" href="/#contact">
                   Contact
                 </a>
               </li>
-              <li className="nav-item dropdown me-4 ">
-                <a
-                  className="nav-link dropdown-toggle text-dark"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <span className="userIcon">
-                    <FontAwesomeIcon icon={faUser} />
-                  </span>
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/login">
-                      Login
-                    </Link>
-                  </li>
+              {!token && (
+                <li className="nav-item">
+                  <Link className="nav-link me-3 text-dark" to="/login">
+                    Login
+                  </Link>
+                </li>
+              )}
+              {token && (
+                <li className="nav-item dropdown me-3 ">
+                  <a
+                    className="nav-link dropdown-toggle text-dark"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <span className="userIcon">
+                      <AiOutlineUser />
+                    </span>
+                  </a>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <a className="dropdown-item" href="#">
+                        Profile
+                      </a>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="/login">
+                        Login
+                      </Link>
+                    </li>
 
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </li>
+                    <li>
+                      <a onClick={logout} className="dropdown-item" href="#">
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              )}
 
               <li className="nav-item">
-                <Link className="nav-link text-dark me-4" to="/cart">
+                <a onClick={openCart} className="nav-link text-dark me-3">
                   <span className="cartIcon">
-                    <FontAwesomeIcon icon={faCartPlus} />
+                    <AiOutlineShoppingCart />
                     <span className="num-position">{cartItem.length}</span>
                   </span>
-                </Link>
+                </a>
               </li>
             </ul>
             <form onSubmit={onSubmit} className="d-flex">
@@ -119,6 +145,9 @@ const HeaderWithLogo = () => {
           </div>
         </div>
       </nav>
+      {showCartItem && (
+        <CartItem addProduct={addProduct} removeProduct={removeProduct} />
+      )}
     </>
   );
 };

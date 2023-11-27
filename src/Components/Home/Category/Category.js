@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Category.css";
-import chair from "../../../images/chair/chair.jpg";
-import table from "../../../images/table/table (2).jpg";
-import bed from "../../../images/bed/bed (2).jpg";
 import Slider from "react-slick";
 import { HomeWraper } from "../../../index";
 import ProductCard from "../ProductCard/ProductCard";
+import { url } from "../../../utils/URL";
 
 const Category = ({ addProduct }) => {
   const [allProduct, setAllProduct] = useState([]);
@@ -20,7 +18,7 @@ const Category = ({ addProduct }) => {
     setActiveCategory(categoryName);
   };
   useEffect(() => {
-    fetch("http://localhost:4000/product")
+    fetch(`${url}/product`)
       .then((res) => res.json())
       .then((data) => {
         const newData = data;
@@ -109,8 +107,8 @@ const Category = ({ addProduct }) => {
     ],
   };
   return (
-    <div id="product">
-      <div className="category-container mt-5 mb-5">
+    <div id="product" className="category-container">
+      <div className=" mt-5 mb-5">
         <div className="div-container">
           <div className="container">
             <h3 className="pt-5 pb-5 text-center text-dark fw-bold">
@@ -176,7 +174,13 @@ const Category = ({ addProduct }) => {
         </div>
       </div>
       <div className="row">
-        {!products.length === 0 && <p>Loading...</p>}
+        {products.length === 0 && (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border " role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
         <HomeWraper>
           <Slider {...productSettings}>
             {products.map((product) => (

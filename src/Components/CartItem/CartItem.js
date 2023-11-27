@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { ProductContext } from "../../App";
-import Subscribe from "../Home/Subscribe/Subscribe";
-import Footer from "../Shared/Footer/Footer";
-import Header from "../Shared/Header/Header";
-import HeaderWithLogo from "../Shared/HeaderWithLogo/HeaderWithLogo";
+import "./CartItem.css";
+import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 
 const CartItem = ({ addProduct, removeProduct }) => {
-  const { cart } = useContext(ProductContext);
+  const history = useHistory();
+  const { cart, showCart } = useContext(ProductContext);
   const [cartItem] = cart;
+  const [showCartItem, setShowCartIrem] = showCart;
+
   const price = cartItem.reduce(
     (accumulator, currentItem) =>
       accumulator + currentItem.price * currentItem.qty,
@@ -18,87 +20,115 @@ const CartItem = ({ addProduct, removeProduct }) => {
   const shipping = price > 400 ? 0 : 15;
   const totalPrice = price + tax + shipping;
 
+  const closeCart = () => {
+    setShowCartIrem(false);
+  };
+
+  const checkout = () => {
+    setShowCartIrem(false);
+    history.push("/shipping");
+  };
+
   return (
-    <div style={{ background: "rgb(248, 253, 253)" }}>
-      {cartItem.length === 0 && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "80vh",
-            fontSize: "30px",
-          }}
-        >
-          <h5>
-            Opps!!! Your cart is empty. Please add products to your cart
-            <Link to="/home"> here</Link>
-          </h5>
-        </div>
-      )}
-      <div className="container-fluid">
-        <div className="d-flex">
-          <div className="col">
-            {cartItem.map((item) => (
-              <div className="row mb-3">
-                <div className="col-md-5">
-                  <img
-                    style={{ height: "250px", width: "200px" }}
-                    src={item.image}
-                    alt=""
-                  />
+    <>
+      {showCartItem && (
+        <div className="shopping-cart">
+          <div className="cart-header">
+            <h3>Shopping Cart</h3>
+            <button className="btn-close" onClick={closeCart}></button>
+          </div>
+          {/* Add your cart items and details here */}
+          <div className="cart-body">
+            <div style={{ background: "rgb(248, 253, 253)" }}>
+              {cartItem.length === 0 && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "50vh",
+                    fontSize: "30px",
+                  }}
+                >
+                  <h5>
+                    Opps!!! Your cart is empty. Please add products to your cart
+                    <a href="/#product"> here</a>
+                  </h5>
                 </div>
-                <div className="col-md-4">
-                  <div className="mt-4">
-                    <h6>{item.description}</h6>
-                    <div className="d-flex">
-                      <button
-                        className="me-2 btn"
-                        style={{ background: "#a9d6e5" }}
-                        onClick={() => removeProduct(item)}
-                      >
-                        -
-                      </button>
-                      <span>
-                        {item.price.toFixed(2)} X {item.qty}
-                      </span>
-                      <button
-                        className="ms-2 btn"
-                        style={{ background: "#a9d6e5" }}
-                        onClick={() => addProduct(item)}
-                      >
-                        +
-                      </button>
+              )}
+              <div className="container-fluid">
+                <div className=" py-2">
+                  <div className="custom-scrollbar ">
+                    {cartItem.map((item) => (
+                      <div className=" mb-3">
+                        <div className="d-flex ">
+                          <div className="">
+                            <img
+                              className="image-size"
+                              src={item.image}
+                              alt=""
+                            />
+                          </div>
+                          <div className="ms-3">
+                            <p className="text-size m-0">{item.description}</p>
+                            <div className="d-flex pt-2">
+                              <div
+                                className="d-flex justify-content-center align-items-center custom-btn"
+                                onClick={() => removeProduct(item)}
+                              >
+                                <AiOutlineMinusCircle />
+                              </div>
+
+                              <div className="d-flex justify-content-center align-items-center">
+                                <div className="px-2">
+                                  ${item.price.toFixed(2)} X {item.qty}
+                                </div>
+                              </div>
+
+                              <div
+                                className="d-flex justify-content-center align-items-center custom-btn"
+                                onClick={() => addProduct(item)}
+                              >
+                                <AiOutlinePlusCircle />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="pt-3">
+                      {cartItem.length !== 0 && (
+                        <>
+                          <p className="m-0">Product Item: {cartItem.length}</p>
+                          <p className="m-0">Product Price: ${price}</p>
+                          <p className="m-0">Tax: ${tax.toFixed(2)}</p>
+                          <p className="m-0">Shipping: ${shipping}</p>
+                          <p className="m-0">
+                            <strong>Total Price:</strong> $
+                            {totalPrice.toFixed(2)}
+                          </p>
+                          <a onClick={checkout}>
+                            <button
+                              className="btn"
+                              style={{ background: "#a9d6e5" }}
+                            >
+                              Check Out
+                            </button>
+                          </a>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
-                <hr />
               </div>
-            ))}
-          </div>
-          <div>
-            <div className="col">
-              {cartItem.length !== 0 && (
-                <>
-                  <h5>Product Item: {cartItem.length}</h5>
-                  <h5>Product Price: ${price}</h5>
-                  <h5>Tax: ${tax.toFixed(2)}</h5>
-                  <h5>Shipping: ${shipping}</h5>
-                  <h5>
-                    <strong>Total Price:</strong> ${totalPrice.toFixed(2)}
-                  </h5>
-                  <Link to="/shipping">
-                    <button className="btn" style={{ background: "#a9d6e5" }}>
-                      Check Out
-                    </button>
-                  </Link>
-                </>
-              )}
             </div>
+            {/* Add more items as needed */}
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

@@ -1,9 +1,5 @@
 .category-container {
-  /* background-image: url('../../../images/soafa/soafa\ \(9\).jpg');
-  height: auto;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; */
+  margin: 5rem 0rem;
 
 }
 
@@ -33,7 +29,6 @@
 
 .activeItem {
   /* text-decoration: underline; */
-  font-weight: bold;
   background: #a9d6e5;
   padding: 5px 20px;
   border-radius: 5px;

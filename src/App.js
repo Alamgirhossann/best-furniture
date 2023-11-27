@@ -16,13 +16,16 @@ import Login from "./Components/Login/Login";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import HeaderWithLogo from "./Components/Shared/HeaderWithLogo/HeaderWithLogo";
 import Footer from "./Components/Shared/Footer/Footer";
+import ScrollRestoration from "react-scroll-restoration";
 
 export const ProductContext = createContext();
 
 function App() {
-  let history = useHistory();
   const [cartItem, setCartItem] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [showCartItem, setShowCartItem] = useState(false);
+  const [token, setToken] = useState();
+  // console.log(token);
 
   useEffect(() => {
     const productData = localStorage.getItem("cartItem");
@@ -35,6 +38,15 @@ function App() {
     localStorage.setItem("cartItem", JSON.stringify(cartItem));
   }, [cartItem]);
 
+  useEffect(() => {
+    const decodedToken = localStorage.getItem("token");
+    setToken(decodedToken);
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+  };
+
   const addProduct = (product) => {
     const exsist = cartItem.find((item) => item.id === product.id);
     if (exsist) {
@@ -46,20 +58,6 @@ function App() {
     } else {
       setCartItem([...cartItem, { ...product, qty: 1 }]);
     }
-  };
-
-  const buyProduct = (product) => {
-    const exsist = cartItem.find((item) => item.id === product.id);
-    if (exsist) {
-      setCartItem(
-        cartItem.map((x) =>
-          x.id === product.id ? { ...exsist, qty: exsist.qty + 1 } : x
-        )
-      );
-    } else {
-      setCartItem([...cartItem, { ...product, qty: 1 }]);
-    }
-    history.push("/cart");
   };
 
   const removeProduct = (product) => {
@@ -76,11 +74,21 @@ function App() {
   };
   return (
     <ProductContext.Provider
-      value={{ loggedInUser, setLoggedInUser, cart: [cartItem, setCartItem] }}
+      value={{
+        loggedInUser,
+        setLoggedInUser,
+        cart: [cartItem, setCartItem],
+        showCart: [showCartItem, setShowCartItem],
+        userToken: [token, setToken],
+      }}
     >
       <Router>
+        <ScrollRestoration />
         <div style={{ background: "#a9d6e5" }}>
-          <HeaderWithLogo></HeaderWithLogo>
+          <HeaderWithLogo
+            addProduct={addProduct}
+            removeProduct={removeProduct}
+          ></HeaderWithLogo>
         </div>
         <Switch>
           <Route exact path="/">
@@ -90,7 +98,10 @@ function App() {
             <Home addProduct={addProduct}></Home>
           </Route>
           <Route path="/productDetail/:id">
-            <ProductDetail addProduct={addProduct}></ProductDetail>
+            <ProductDetail
+              addProduct={addProduct}
+              removeProduct={removeProduct}
+            ></ProductDetail>
           </Route>
           <PrivateRoute path="/shipping">
             <Shipping></Shipping>

@@ -44,14 +44,14 @@ const Blog = () => {
   return (
     <div id="blog">
       <div className="container-fluid mt-5 mb-5">
-        <h3 className="mb-4 fw-bold text-center">From The Blog</h3>
+        <h3 className="mb-5 pb-2 fw-bold text-center">From The Blog</h3>
         <div className="row">
           <HomeWraper>
             <Slider {...settings}>
               <div>
                 <div className="card me-3">
                   <img
-                    style={{ height: "300px" }}
+                    style={{ height: "200px" }}
                     src={chair}
                     className="card-img-top"
                     alt="..."
@@ -71,7 +71,7 @@ const Blog = () => {
               <div>
                 <div className="card me-3">
                   <img
-                    style={{ height: "300px" }}
+                    style={{ height: "200px" }}
                     src={table}
                     className="card-img-top"
                     alt="..."
@@ -93,7 +93,7 @@ const Blog = () => {
               <div>
                 <div className="card me-3">
                   <img
-                    style={{ height: "300px" }}
+                    style={{ height: "200px" }}
                     src={soafa}
                     className="card-img-top"
                     alt="..."
@@ -115,7 +115,7 @@ const Blog = () => {
               <div>
                 <div className="card me-3">
                   <img
-                    style={{ height: "300px" }}
+                    style={{ height: "200px" }}
                     src={bed}
                     className="card-img-top"
                     alt="..."

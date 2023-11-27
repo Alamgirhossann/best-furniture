@@ -22,8 +22,8 @@ function ContactForm() {
   };
 
   return (
-    <div className="container-fluid my-5" id="contact">
-      <h1 className="text-center">Contact Us</h1>
+    <div className="container-fluid my-5 py-5" id="contact">
+      <h1 className="text-center my-5">Contact Us</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -70,9 +70,15 @@ function ContactForm() {
           ></textarea>
         </div>
 
-        <button type="submit" className="btn" style={{ background: "#a9d6e5" }}>
-          Submit
-        </button>
+        <div className="text-center">
+          <button
+            type="submit"
+            className="btn"
+            style={{ background: "#a9d6e5" }}
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

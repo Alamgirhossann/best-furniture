@@ -15,8 +15,9 @@
 }
 
 .userIcon {
-    font-size: 15px;
+    font-size: 16px;
     position: relative;
+    cursor: pointer;
 }
 
 .num-position {
@@ -34,8 +35,9 @@
 }
 
 .cartIcon {
-    font-size: 15px;
+    font-size: 16px;
     position: relative;
+    cursor: pointer;
 }
 
 .custom-btn {

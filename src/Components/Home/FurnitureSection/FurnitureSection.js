@@ -4,7 +4,7 @@ import "./FurnitureSection.css";
 
 const FurnitureSection = () => {
   return (
-    <div className="container-fluid mt-5">
+    <div className=" furniture-sec">
       <div className="row">
         <div className="col-md-6 mb-3">
           <div className="section-first-image">
